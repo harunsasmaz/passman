@@ -2,6 +2,7 @@ package password
 
 import (
 	"errors"
+
 	p "github.com/sethvargo/go-password/password"
 )
 

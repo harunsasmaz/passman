@@ -2,6 +2,7 @@ package cli
 
 import (
 	"fmt"
+
 	"github.com/harunsasmaz/password-manager/internal/password"
 	"github.com/urfave/cli/v2"
 	"golang.design/x/clipboard"
@@ -18,9 +19,10 @@ SUPPORT: me@harunsasmaz.com
 }
 
 var generate = &cli.Command{
-	Name:     "generate",
-	Category: "Generator",
-	Usage:    "generate a random password.",
+	Name:      "generate",
+	Category:  "Generator",
+	Usage:     "generate a random password.",
+	UsageText: "passman generate [FLAGS] [ARGS]\nIf you set --level, other options will be discarded",
 	Action: func(c *cli.Context) error {
 		var pass string
 		var err error

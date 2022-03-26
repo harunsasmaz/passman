@@ -24,7 +24,7 @@ func New(path string) (*Manager, error) {
 	opts := &bolt.Options{
 		Timeout: 50 * time.Millisecond,
 	}
-	if db, err := bolt.Open(path, 0640, opts); err != nil {
+	if db, err := bolt.Open(path, 0o640, opts); err != nil {
 		return nil, err
 	} else {
 		err := db.Update(func(tx *bolt.Tx) error {
