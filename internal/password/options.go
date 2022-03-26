@@ -1,66 +1,48 @@
 package password
 
 type Options struct {
-	// length indices the length of password, inclusive range is [1, 64].
-	length int
+	// Length implies the Length of password, inclusive range is [1, 64].
+	Length int
 
-	// numDigits indices the number of digits contained in a password.
-	numDigits int
+	// NumDigits implies the number of digits contained in a password.
+	NumDigits int
 
-	// numSymbols indices the number of symbols contained in a password.
-	numSymbols int
+	// NumSymbols implies the number of symbols contained in a password.
+	NumSymbols int
 
-	// lowercase indices if password should contain lower case letters.
-	lowercase bool
+	// Uppercase implies if password should contain upper case letters.
+	Uppercase bool
 
-	// uppercase indices if password should contain upper case letters.
-	uppercase bool
-
-	// digits indices if password should contain digits.
-	digits bool
-
-	// symbols indices if password should contain symbols.
-	symbols bool
-
-	// repeat indices if password should contain repeated characters.
-	repeat bool
+	// NoRepeat implies if password should not contain repeated characters.
+	NoRepeat bool
 }
 
 var (
 
 	// easyOptions is a pre-defined options for an easy level password.
 	easyOptions = Options{
-		length:     8,
-		numDigits:  2,
-		numSymbols: 0,
-		lowercase:  true,
-		uppercase:  false,
-		digits:     true,
-		symbols:    false,
-		repeat:     false,
+		Length:     8,
+		NumDigits:  2,
+		NumSymbols: 2,
+		Uppercase:  true,
+		NoRepeat:   true,
 	}
 
 	// midOptions is a pre-defined options for a mid level password.
 	midOptions = Options{
-		length:     16,
-		numDigits:  4,
-		numSymbols: 4,
-		lowercase:  true,
-		uppercase:  true,
-		digits:     true,
-		symbols:    true,
-		repeat:     false,
+		Length:     16,
+		NumDigits:  4,
+		NumSymbols: 4,
+		Uppercase:  true,
+		NoRepeat:   true,
 	}
 
 	// hardOptions is a pre-defined options for a hard level password.
 	hardOptions = Options{
-		length:     32,
-		numDigits:  8,
-		numSymbols: 8,
-		lowercase:  true,
-		uppercase:  true,
-		digits:     true,
-		symbols:    true,
-		repeat:     false,
+		Length:     32,
+		NumDigits:  8,
+		NumSymbols: 8,
+		Uppercase:  true,
+		NoRepeat:   true,
 	}
 )

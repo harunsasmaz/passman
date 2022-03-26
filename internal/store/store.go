@@ -39,6 +39,10 @@ func New(path string) (*Manager, error) {
 	}
 }
 
+func (m *Manager) Close() error {
+	return m.store.Close()
+}
+
 func (m *Manager) get(key string, value interface{}) error {
 	return m.store.View(func(tx *bolt.Tx) error {
 		c := tx.Bucket([]byte(storeName)).Cursor()

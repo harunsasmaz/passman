@@ -1,9 +1,12 @@
 package password
 
-import "errors"
+import (
+	"errors"
+	p "github.com/sethvargo/go-password/password"
+)
 
 func generate(options *Options) (string, error) {
-	return "", nil
+	return p.Generate(options.Length, options.NumDigits, options.NumSymbols, !options.Uppercase, !options.NoRepeat)
 }
 
 func Generate(level Level) (string, error) {
