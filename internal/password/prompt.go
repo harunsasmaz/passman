@@ -1,5 +1,3 @@
-//go:build !windows
-
 package password
 
 import (
@@ -12,7 +10,7 @@ import (
 
 func Prompt(label string) (string, error) {
 	fmt.Fprint(os.Stderr, label+": ")
-	b, err := term.ReadPassword(syscall.Stdin)
+	b, err := term.ReadPassword(int(syscall.Stdin))
 	fmt.Println()
 	if err != nil {
 		return "", errors.New("error on password prompt")
