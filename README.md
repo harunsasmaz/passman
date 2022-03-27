@@ -7,3 +7,10 @@ a simple local password manager for daily usage
 
 
 ---
+
+<div align="center">
+
+![test](https://github.com/harunsasmaz/passman/actions/workflows/test.yaml/badge.svg)
+![lint](https://github.com/harunsasmaz/passman/actions/workflows/gocilint.yaml/badge.svg)
+
+</div>
