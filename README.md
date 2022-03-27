@@ -12,5 +12,6 @@ a simple local password manager for daily usage
 
 ![test](https://github.com/harunsasmaz/passman/actions/workflows/test.yaml/badge.svg)
 ![lint](https://github.com/harunsasmaz/passman/actions/workflows/gocilint.yaml/badge.svg)
+![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 
 </div>
