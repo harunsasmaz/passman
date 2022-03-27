@@ -25,7 +25,7 @@ var get = &cli.Command{
 		var creds credentials
 		err := store.Get(context.Args().Get(0), &creds)
 		if err != nil {
-			return err
+			return errors.New("alias not found")
 		}
 
 		fmt.Println("Successfully retrieved password!")

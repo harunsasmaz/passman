@@ -71,6 +71,10 @@ func Put(key string, value interface{}) error {
 
 func Delete(key string) error {
 	return DB.Update(func(tx *bolt.Tx) error {
+		if key == "root" {
+			return nil
+		}
+
 		c := tx.Bucket([]byte(storeName)).Cursor()
 		if k, _ := c.Seek([]byte(key)); k == nil || string(k) != key {
 			return ErrNotFound
@@ -84,6 +88,10 @@ func Clear() error {
 	return DB.Update(func(tx *bolt.Tx) error {
 		c := tx.Bucket([]byte(storeName)).Cursor()
 		for k, _ := c.First(); k != nil; k, _ = c.Next() {
+			if string(k) == "root" {
+				continue
+			}
+
 			err := c.Delete()
 			if err != nil {
 				return err
