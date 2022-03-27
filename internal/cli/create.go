@@ -13,6 +13,14 @@ var create = &cli.Command{
 	UsageText: "passman create [FLAGS] [ARGS]",
 	Category:  "Manager",
 	Action: func(context *cli.Context) (err error) {
+		if !context.IsSet("a") || !context.IsSet("u") {
+			return errors.New("alias and username must be provided")
+		}
+
+		if !context.IsSet("p") && !context.IsSet("g") {
+			return errors.New("either password or generate flag must be provided")
+		}
+
 		pass := context.String("p")
 		if context.IsSet("g") {
 			pass, err = password.Generate(password.LevelHard)

@@ -2,6 +2,7 @@ package cli
 
 import (
 	"errors"
+	"fmt"
 	"github.com/harunsasmaz/password-manager/internal/password"
 	"github.com/harunsasmaz/password-manager/internal/store"
 	"github.com/urfave/cli/v2"
@@ -9,26 +10,32 @@ import (
 
 var update = &cli.Command{
 	Name:      "update",
-	Usage:     "update an existing username/password pair with an alias",
+	Usage:     "update an existing username or password pair with an alias",
 	UsageText: "passman update [FLAGS] [ARGS]",
 	Category:  "Manager",
 	Action: func(context *cli.Context) (err error) {
-		err = store.Get(context.String("a"), nil)
+		var creds credentials
+		err = store.Get(context.String("a"), &creds)
 		if err != nil {
 			return errors.New("there is no credentials with provided alias")
 		}
 
-		pass := context.String("p")
 		if context.IsSet("g") {
-			pass, err = password.Generate(password.LevelHard)
+			creds.Password, err = password.Generate(password.LevelHard)
 			if err != nil {
-				return errors.New("failed to generate password to save")
+				return errors.New("failed to generate password to update")
 			}
+			fmt.Println("Password renewed!")
 		}
 
-		creds := credentials{
-			Source:   context.String("u"),
-			Password: pass,
+		if context.IsSet("p") {
+			creds.Password = context.String("p")
+			fmt.Println("Password renewed!")
+		}
+
+		if context.IsSet("u") {
+			creds.Source = context.String("u")
+			fmt.Println("Username renewed!")
 		}
 
 		err = store.Put(context.String("a"), creds)
@@ -36,6 +43,7 @@ var update = &cli.Command{
 			return errors.New("failed to save credentials")
 		}
 
+		fmt.Println("Successfully saved changes!")
 		return nil
 	},
 	Flags: []cli.Flag{

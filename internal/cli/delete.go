@@ -21,6 +21,10 @@ var deletes = &cli.Command{
 			return nil
 		}
 
+		if !context.IsSet("a") {
+			return errors.New("alias is not provided")
+		}
+
 		err = store.Delete(context.String("a"))
 		if err != nil {
 			return errors.New("failed to delete credentials for alias: " + context.String("a"))
