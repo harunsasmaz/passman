@@ -16,35 +16,34 @@ var (
 	ErrBadValue = errors.New("bad value")
 )
 
-type Manager struct {
-	store *bolt.DB
-}
+var DB *bolt.DB
 
-func New(path string) (*Manager, error) {
+func Open(path string) error {
 	opts := &bolt.Options{
 		Timeout: 50 * time.Millisecond,
 	}
 	if db, err := bolt.Open(path, 0o640, opts); err != nil {
-		return nil, err
+		return err
 	} else {
 		err := db.Update(func(tx *bolt.Tx) error {
 			_, err := tx.CreateBucketIfNotExists([]byte(storeName))
 			return err
 		})
 		if err != nil {
-			return nil, err
+			return err
 		} else {
-			return &Manager{store: db}, nil
+			DB = db
+			return nil
 		}
 	}
 }
 
-func (m *Manager) Close() error {
-	return m.store.Close()
+func Close() error {
+	return DB.Close()
 }
 
-func (m *Manager) get(key string, value interface{}) error {
-	return m.store.View(func(tx *bolt.Tx) error {
+func Get(key string, value interface{}) error {
+	return DB.View(func(tx *bolt.Tx) error {
 		c := tx.Bucket([]byte(storeName)).Cursor()
 		if k, v := c.Seek([]byte(key)); k == nil || string(k) != key {
 			return ErrNotFound
@@ -57,7 +56,7 @@ func (m *Manager) get(key string, value interface{}) error {
 	})
 }
 
-func (m *Manager) put(key string, value interface{}) error {
+func Put(key string, value interface{}) error {
 	if value == nil {
 		return ErrBadValue
 	}
@@ -65,18 +64,32 @@ func (m *Manager) put(key string, value interface{}) error {
 	if err := gob.NewEncoder(&buf).Encode(value); err != nil {
 		return err
 	}
-	return m.store.Update(func(tx *bolt.Tx) error {
+	return DB.Update(func(tx *bolt.Tx) error {
 		return tx.Bucket([]byte(storeName)).Put([]byte(key), buf.Bytes())
 	})
 }
 
-func (m *Manager) delete(key string) error {
-	return m.store.Update(func(tx *bolt.Tx) error {
+func Delete(key string) error {
+	return DB.Update(func(tx *bolt.Tx) error {
 		c := tx.Bucket([]byte(storeName)).Cursor()
 		if k, _ := c.Seek([]byte(key)); k == nil || string(k) != key {
 			return ErrNotFound
 		} else {
 			return c.Delete()
 		}
+	})
+}
+
+func Clear() error {
+	return DB.Update(func(tx *bolt.Tx) error {
+		c := tx.Bucket([]byte(storeName)).Cursor()
+		for k, _ := c.First(); k != nil; k, _ = c.Next() {
+			err := c.Delete()
+			if err != nil {
+				return err
+			}
+		}
+
+		return nil
 	})
 }

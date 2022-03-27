@@ -1,14 +1,34 @@
 package main
 
 import (
+	"fmt"
+	"github.com/harunsasmaz/password-manager/internal/cli"
+	"github.com/harunsasmaz/password-manager/internal/store"
 	"log"
 	"os"
-
-	"github.com/harunsasmaz/password-manager/internal/cli"
 )
 
 func main() {
-	err := cli.App.Run(os.Args)
+	home, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatalln("failed to read home directory of user")
+	}
+
+	path := fmt.Sprintf("%s/.passman", home)
+
+	err = os.MkdirAll(path, os.ModePerm)
+	if err != nil {
+		log.Fatalln("failed to initialize passman path")
+	}
+
+	dbPath := fmt.Sprintf("%s/store.db", path)
+	err = store.Open(dbPath)
+	if err != nil {
+		log.Fatalln("failed to initialize local key-value store")
+	}
+	defer store.Close()
+
+	err = cli.App.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)
 	}

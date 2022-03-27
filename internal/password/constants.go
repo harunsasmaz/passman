@@ -14,17 +14,3 @@ const (
 	// LevelHard is the options for a strong password.
 	LevelHard = 3
 )
-
-const (
-	// LowerLetters is the list of lowercase letters.
-	LowerLetters = "abcdefghijklmnopqrstuvwxyz"
-
-	// UpperLetters is the list of Uppercase letters.
-	UpperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-	// Digits is the list of permitted digits.
-	Digits = "0123456789"
-
-	// Symbols is the list of symbols.
-	Symbols = "~!@#$%^&*()_+`-={}|[]\\:\"<>?,./"
-)
