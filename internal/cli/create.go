@@ -2,6 +2,8 @@ package cli
 
 import (
 	"errors"
+	"fmt"
+
 	"github.com/harunsasmaz/password-manager/internal/password"
 	"github.com/harunsasmaz/password-manager/internal/store"
 	"github.com/urfave/cli/v2"
@@ -39,6 +41,7 @@ var create = &cli.Command{
 			return errors.New("failed to save credentials")
 		}
 
+		fmt.Printf("Successfully created credentials for alias: %s\n", context.String("a"))
 		return nil
 	},
 	Flags: []cli.Flag{

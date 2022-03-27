@@ -2,6 +2,7 @@ package cli
 
 import (
 	"fmt"
+
 	"github.com/harunsasmaz/password-manager/internal/password"
 	"github.com/urfave/cli/v2"
 	"golang.design/x/clipboard"

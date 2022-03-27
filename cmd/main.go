@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/harunsasmaz/password-manager/internal/cli"
-	"github.com/harunsasmaz/password-manager/internal/store"
 	"log"
 	"os"
+
+	"github.com/harunsasmaz/password-manager/internal/cli"
+	"github.com/harunsasmaz/password-manager/internal/store"
 )
 
 func main() {

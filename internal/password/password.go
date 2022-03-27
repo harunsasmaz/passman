@@ -3,9 +3,10 @@ package password
 import (
 	"errors"
 	"fmt"
-	"golang.org/x/term"
 	"os"
 	"syscall"
+
+	"golang.org/x/term"
 
 	p "github.com/sethvargo/go-password/password"
 )

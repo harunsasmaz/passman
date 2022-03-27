@@ -3,6 +3,7 @@ package cli
 import (
 	"errors"
 	"fmt"
+
 	"github.com/harunsasmaz/password-manager/internal/password"
 	"github.com/harunsasmaz/password-manager/internal/store"
 	"github.com/urfave/cli/v2"

@@ -2,6 +2,8 @@ package cli
 
 import (
 	"errors"
+	"fmt"
+
 	"github.com/harunsasmaz/password-manager/internal/store"
 	"github.com/urfave/cli/v2"
 )
@@ -22,6 +24,7 @@ var deletes = &cli.Command{
 				return errors.New("failed to delete all items")
 			}
 
+			fmt.Println("Successfully deleted all credentials")
 			return nil
 		}
 
@@ -34,6 +37,7 @@ var deletes = &cli.Command{
 			return errors.New("failed to delete credentials for alias: " + context.String("a"))
 		}
 
+		fmt.Printf("Successfully deleted credentials for alias: %s\n", context.String("a"))
 		return nil
 	},
 	Flags: []cli.Flag{
