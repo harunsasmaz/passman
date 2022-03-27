@@ -2,12 +2,6 @@ package password
 
 import (
 	"errors"
-	"fmt"
-	"os"
-	"syscall"
-
-	"golang.org/x/term"
-
 	p "github.com/sethvargo/go-password/password"
 )
 
@@ -33,17 +27,4 @@ func Generate(level Level) (string, error) {
 
 func GenerateWithOptions(options *Options) (string, error) {
 	return generate(options)
-}
-
-func Prompt(label string) (string, error) {
-	fmt.Fprint(os.Stderr, label+": ")
-	b, err := term.ReadPassword(syscall.Stdin)
-	fmt.Println()
-	if err != nil {
-		return "", errors.New("error on password prompt")
-	}
-	if string(b) == "" {
-		return "", errors.New("password cannot be empty")
-	}
-	return string(b), nil
 }

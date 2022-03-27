@@ -1,0 +1,16 @@
+//go:build windows
+
+package password
+
+func Prompt(label string) (string, error) {
+	fmt.Fprint(os.Stderr, label+": ")
+	b, err := term.ReadPassword(int(syscall.Stdin))
+	fmt.Println()
+	if err != nil {
+		return "", errors.New("error on password prompt")
+	}
+	if string(b) == "" {
+		return "", errors.New("password cannot be empty")
+	}
+	return string(b), nil
+}
