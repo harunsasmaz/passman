@@ -3,3 +3,6 @@
 .DS_Store
 *.out
 *.exe
+passman
+dist/*
+passman/*
