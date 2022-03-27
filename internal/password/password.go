@@ -37,7 +37,7 @@ func GenerateWithOptions(options *Options) (string, error) {
 
 func Prompt(label string) (string, error) {
 	fmt.Fprint(os.Stderr, label+": ")
-	b, err := term.ReadPassword(int(syscall.Stdin))
+	b, err := term.ReadPassword(syscall.Stdin)
 	fmt.Println()
 	if err != nil {
 		return "", errors.New("error on password prompt")
