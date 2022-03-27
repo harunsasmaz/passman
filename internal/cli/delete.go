@@ -12,6 +12,10 @@ var deletes = &cli.Command{
 	UsageText: "passman delete <alias>",
 	Category:  "Manager",
 	Action: func(context *cli.Context) (err error) {
+		if err = authenticate(); err != nil {
+			return err
+		}
+
 		if context.IsSet("all") {
 			err = store.Clear()
 			if err != nil {

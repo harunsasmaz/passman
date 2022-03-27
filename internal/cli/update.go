@@ -14,6 +14,10 @@ var update = &cli.Command{
 	UsageText: "passman update [FLAGS] [ARGS]",
 	Category:  "Manager",
 	Action: func(context *cli.Context) (err error) {
+		if err = authenticate(); err != nil {
+			return err
+		}
+
 		var creds credentials
 		err = store.Get(context.String("a"), &creds)
 		if err != nil {

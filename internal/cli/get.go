@@ -18,6 +18,10 @@ var get = &cli.Command{
 			return errors.New("alias is not provided")
 		}
 
+		if err := authenticate(); err != nil {
+			return err
+		}
+
 		var creds credentials
 		err := store.Get(context.Args().Get(0), &creds)
 		if err != nil {
