@@ -10,7 +10,7 @@ a simple local password manager for daily usage
 
 <div align="center">
 
-![build](https://github.com/harunsasmaz/passman/actions/workflows/test.yaml/badge.svg)
+![build](https://github.com/harunsasmaz/passman/actions/workflows/build.yaml/badge.svg)
 ![test](https://github.com/harunsasmaz/passman/actions/workflows/test.yaml/badge.svg)
 ![lint](https://github.com/harunsasmaz/passman/actions/workflows/gocilint.yaml/badge.svg)
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
