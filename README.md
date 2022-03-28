@@ -30,7 +30,7 @@ $ brew install harunsasmaz/tap/passman
 ### Go
 
 ```
-$ go install github.com/ycd/dstp/cmd/dstp@latest
+$ go install github.com/harunsasmaz/passman/cmd/passman@latest
 ```
 
 ### Install from binary
