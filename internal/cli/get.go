@@ -4,9 +4,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/harunsasmaz/password-manager/internal/store"
 	"github.com/urfave/cli/v2"
 	"golang.design/x/clipboard"
+	"passman/internal/store"
 )
 
 var get = &cli.Command{

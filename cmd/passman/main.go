@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/harunsasmaz/password-manager/internal/cli"
-	"github.com/harunsasmaz/password-manager/internal/store"
+	"passman/internal/cli"
+	"passman/internal/store"
 )
 
 func main() {
