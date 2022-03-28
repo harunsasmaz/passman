@@ -10,10 +10,11 @@ import (
 )
 
 var get = &cli.Command{
-	Name:      "get",
-	Usage:     "get username and password for an alias",
-	UsageText: "passman get <alias>",
-	Category:  "Manager",
+	Name:            "get",
+	Usage:           "get account and password for an alias",
+	UsageText:       "passman get <alias>",
+	Category:        "Manager",
+	HideHelpCommand: true,
 	Action: func(context *cli.Context) error {
 		if context.NArg() < 1 {
 			return errors.New("alias is not provided")

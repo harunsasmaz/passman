@@ -10,10 +10,11 @@ import (
 )
 
 var update = &cli.Command{
-	Name:      "update",
-	Usage:     "update an existing username or password pair with an alias",
-	UsageText: "passman update [FLAGS] [ARGS]",
-	Category:  "Manager",
+	Name:            "update",
+	Usage:           "update an existing account or password with an alias",
+	UsageText:       "passman update [FLAGS] [ARGS]",
+	Category:        "Manager",
+	HideHelpCommand: true,
 	Action: func(context *cli.Context) (err error) {
 		if err = authenticate(); err != nil {
 			return err
@@ -40,7 +41,7 @@ var update = &cli.Command{
 
 		if context.IsSet("u") {
 			creds.Source = context.String("u")
-			fmt.Println("Username renewed!")
+			fmt.Println("Account name renewed!")
 		}
 
 		err = store.Put(context.String("a"), creds)
@@ -55,22 +56,22 @@ var update = &cli.Command{
 		&cli.StringFlag{
 			Name:    "alias",
 			Aliases: []string{"a"},
-			Usage:   "set an alias for the new credentials.",
+			Usage:   "set alias that you want to update.",
 		},
 		&cli.StringFlag{
-			Name:    "username",
+			Name:    "account",
 			Aliases: []string{"u"},
-			Usage:   "set username or host that password will be used for.",
+			Usage:   "set account or host if you want to update.",
 		},
 		&cli.StringFlag{
 			Name:    "password",
 			Aliases: []string{"p"},
-			Usage:   "set password.",
+			Usage:   "set password if you want to update.",
 		},
 		&cli.BoolFlag{
 			Name:    "generate",
 			Aliases: []string{"g"},
-			Usage:   "generates a new secure password to save.",
+			Usage:   "generates a new secure password to update.",
 		},
 	},
 }

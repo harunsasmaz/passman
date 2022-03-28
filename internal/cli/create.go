@@ -10,13 +10,14 @@ import (
 )
 
 var create = &cli.Command{
-	Name:      "create",
-	Usage:     "create a new username/password with an alias",
-	UsageText: "passman create [FLAGS] [ARGS]",
-	Category:  "Manager",
+	Name:            "create",
+	Usage:           "create a new account/password pair with an alias",
+	UsageText:       "passman create [FLAGS] [ARGS]",
+	Category:        "Manager",
+	HideHelpCommand: true,
 	Action: func(context *cli.Context) (err error) {
 		if !context.IsSet("a") || !context.IsSet("u") {
-			return errors.New("alias and username must be provided")
+			return errors.New("alias and account must be provided")
 		}
 
 		if !context.IsSet("p") && !context.IsSet("g") {
@@ -51,9 +52,9 @@ var create = &cli.Command{
 			Usage:   "set an alias for the new credentials.",
 		},
 		&cli.StringFlag{
-			Name:    "username",
+			Name:    "account",
 			Aliases: []string{"u"},
-			Usage:   "set username or host that password will be used for.",
+			Usage:   "set account or host that password will be used for.",
 		},
 		&cli.StringFlag{
 			Name:    "password",

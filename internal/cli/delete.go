@@ -9,10 +9,11 @@ import (
 )
 
 var deletes = &cli.Command{
-	Name:      "delete",
-	Usage:     "delete username and password for an alias",
-	UsageText: "passman delete <alias>",
-	Category:  "Manager",
+	Name:            "delete",
+	Usage:           "delete account and password for an alias",
+	UsageText:       "passman delete <alias>",
+	Category:        "Manager",
+	HideHelpCommand: true,
 	Action: func(context *cli.Context) (err error) {
 		if err = authenticate(); err != nil {
 			return err
@@ -48,7 +49,7 @@ var deletes = &cli.Command{
 		},
 		&cli.BoolFlag{
 			Name:  "all",
-			Usage: "delete all stored items",
+			Usage: "delete all stored credentials",
 		},
 	},
 }

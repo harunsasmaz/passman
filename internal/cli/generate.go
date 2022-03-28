@@ -9,10 +9,11 @@ import (
 )
 
 var generate = &cli.Command{
-	Name:      "generate",
-	Category:  "Generator",
-	Usage:     "generate a random password.",
-	UsageText: "passman generate [FLAGS] [ARGS]\nIf you set --level, other options will be discarded",
+	Name:            "generate",
+	Category:        "Generator",
+	Usage:           "generate a random password.",
+	UsageText:       "passman generate [FLAGS] [ARGS]\nIf you set --level, other options will be discarded",
+	HideHelpCommand: true,
 	Action: func(c *cli.Context) error {
 		var pass string
 		var err error
@@ -42,7 +43,6 @@ var generate = &cli.Command{
 			Name:    "level",
 			Aliases: []string{"l"},
 			Usage:   "choose a strength to use built-in options. Easy: 1, Mid: 2, Hard: 3. Example: -l 1",
-			Value:   1,
 		},
 		&cli.IntFlag{
 			Name:    "length",
