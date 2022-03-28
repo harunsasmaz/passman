@@ -1,4 +1,4 @@
-module github.com/harunsasmaz/password-manager
+module github.com/harunsasmaz/passman
 
 go 1.17
 
