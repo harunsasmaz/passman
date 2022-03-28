@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"passman/internal/cli"
-	"passman/internal/store"
+	"github.com/harunsasmaz/passman/internal/cli"
+	"github.com/harunsasmaz/passman/internal/store"
 )
 
 func main() {

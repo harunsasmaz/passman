@@ -1,4 +1,4 @@
-module passman
+module github.com/harunsasmaz/passman
 
 go 1.17
 

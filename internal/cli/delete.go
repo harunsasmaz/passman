@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/harunsasmaz/passman/internal/store"
 	"github.com/urfave/cli/v2"
-	"passman/internal/store"
 )
 
 var deletes = &cli.Command{

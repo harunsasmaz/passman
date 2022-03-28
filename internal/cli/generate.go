@@ -3,9 +3,9 @@ package cli
 import (
 	"fmt"
 
+	"github.com/harunsasmaz/passman/internal/password"
 	"github.com/urfave/cli/v2"
 	"golang.design/x/clipboard"
-	"passman/internal/password"
 )
 
 var generate = &cli.Command{

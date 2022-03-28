@@ -4,9 +4,9 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/harunsasmaz/passman/internal/password"
+	"github.com/harunsasmaz/passman/internal/store"
 	"github.com/urfave/cli/v2"
-	"passman/internal/password"
-	"passman/internal/store"
 )
 
 var create = &cli.Command{
