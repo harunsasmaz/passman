@@ -26,8 +26,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: test
+      - name: Test
         timeout-minutes: 2
         run: |
           go build cmd/passman/main.go
-          go test -v -tags=integration ./...
