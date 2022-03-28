@@ -1,11 +1,11 @@
 package cli
 
 import (
+	"errors"
 	"fmt"
-
+	"github.com/atotto/clipboard"
 	"github.com/harunsasmaz/passman/internal/password"
 	"github.com/urfave/cli/v2"
-	"golang.design/x/clipboard"
 )
 
 var generate = &cli.Command{
@@ -33,7 +33,10 @@ var generate = &cli.Command{
 			return err
 		}
 
-		clipboard.Write(clipboard.FmtText, []byte(pass))
+		err = clipboard.WriteAll(pass)
+		if err != nil {
+			return errors.New("failed to copy password to clipboard")
+		}
 		fmt.Println("Copied to clipboard!")
 
 		return nil

@@ -3,10 +3,9 @@ package cli
 import (
 	"errors"
 	"fmt"
-
+	"github.com/atotto/clipboard"
 	"github.com/harunsasmaz/passman/internal/store"
 	"github.com/urfave/cli/v2"
-	"golang.design/x/clipboard"
 )
 
 var get = &cli.Command{
@@ -31,8 +30,12 @@ var get = &cli.Command{
 		}
 
 		fmt.Println("Successfully retrieved password!")
+		err = clipboard.WriteAll(creds.Password)
+		if err != nil {
+			return errors.New("failed to copy password to clipboard")
+		}
+
 		fmt.Printf("Password is used for account: %s\n", creds.Source)
-		clipboard.Write(clipboard.FmtText, []byte(creds.Password))
 		fmt.Println("Copied password to clipboard!")
 
 		return nil
